@@ -21,6 +21,19 @@
         <div class="box cta">
             <p class="has-text-centered">Uma simples livraria utilizando microservices</p>
         </div>
+
+        <section class="section">
+            <div class="container has-text-centered">
+                <div class="field has-addons has-addons-centered">
+                    <div class="control">
+                        <input class="input" type="number" id="bookId">
+                    </div>
+                    <button class="button" onclick="pesquisarLivro()">Pesquisar Livro</button>
+                </div>
+                <div id="resultadoLivro" class="section"></div>
+            </div>
+        </section>
+
         <section class="container">
             <div class="columns books"></div>
         </section>

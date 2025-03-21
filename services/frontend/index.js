@@ -88,3 +88,33 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error(err);
         });
 });
+
+function pesquisarLivro() {
+    const id = document.getElementById('bookId').value;
+    const resultado = document.getElementById('resultadoLivro');
+
+
+    fetch(`http://localhost:3000/product/${id}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Livro não encontrado');
+            }
+            return response.json();
+        })
+        .then(livro => {
+            resultado.innerHTML = `
+                <div class="box">
+                    <h3 class="title is-4">${livro.name}</h3>
+                    <p><strong>Autor:</strong> ${livro.author}</p>
+                    <p><strong>Preço:</strong> R$ ${livro.price.toFixed(2)}</p>
+                    <p><strong>Quantidade:</strong> ${livro.quantity}</p>
+                    <figure class="image is-128x128 is-inline-block">
+                      <img src="${livro.photo}" alt="${livro.name}">
+                    </figure>
+                </div>
+            `;
+        })
+        .catch(error => {
+            resultado.innerHTML = `<p class="has-text-danger">${error.message}</p>`;
+        });
+}
